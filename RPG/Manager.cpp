@@ -132,21 +132,29 @@ void Manager::ControlSystem(int& keyPressed)
         // Reset direction
         positionCom.deltaX = positionCom.deltaY = 0;
         
-        if (keyPressed == SDLK_LEFT)
-        {
-            positionCom.deltaX = -1;
-        }
-        if (keyPressed == SDLK_RIGHT)
-        {
-            positionCom.deltaX = 1;
-        }
-        if (keyPressed == SDLK_UP)
-        {
-            positionCom.deltaY = -1;
-        }
-        if (keyPressed == SDLK_DOWN)
-        {
-            positionCom.deltaY = 1;
+        switch (keyPressed) {
+            case SDLK_w:
+            case SDLK_UP:
+                positionCom.deltaY = -1;
+                break;
+                
+            case SDLK_a:
+            case SDLK_LEFT:
+                positionCom.deltaX = -1;
+                break;
+                
+            case SDLK_s:
+            case SDLK_DOWN:
+                positionCom.deltaY = 1;
+                break;
+                
+            case SDLK_d:
+            case SDLK_RIGHT:
+                positionCom.deltaX = 1;
+                break;
+                
+            default:
+                break;
         }
     }
 }
