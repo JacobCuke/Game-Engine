@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4360696A24011A02004C9D48 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4360696824011A02004C9D48 /* Vector2D.cpp */; };
 		43B98CF723F6CC2C0051C5DA /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF323F6CC2C0051C5DA /* Game.cpp */; };
 		43B98CF823F6CC2C0051C5DA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF423F6CC2C0051C5DA /* main.cpp */; };
 		43B98CFB23F7ABC40051C5DA /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF923F7ABC40051C5DA /* TextureManager.cpp */; };
@@ -30,6 +31,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4360696824011A02004C9D48 /* Vector2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2D.cpp; sourceTree = "<group>"; };
+		4360696924011A02004C9D48 /* Vector2D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector2D.hpp; sourceTree = "<group>"; };
 		43B98CF323F6CC2C0051C5DA /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		43B98CF423F6CC2C0051C5DA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		43B98CF523F6CC2C0051C5DA /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 				43B98D0723FBFA9F0051C5DA /* Components.hpp */,
 				43EFC1BC23FD80C3005046A5 /* Manager.cpp */,
 				43EFC1BD23FD80C3005046A5 /* Manager.hpp */,
+				4360696824011A02004C9D48 /* Vector2D.cpp */,
+				4360696924011A02004C9D48 /* Vector2D.hpp */,
 			);
 			path = RPG;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4360696A24011A02004C9D48 /* Vector2D.cpp in Sources */,
 				43EFC1BE23FD80C3005046A5 /* Manager.cpp in Sources */,
 				43B98D0123F7C6840051C5DA /* Map.cpp in Sources */,
 				43B98CF823F6CC2C0051C5DA /* main.cpp in Sources */,
