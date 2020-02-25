@@ -27,7 +27,7 @@ void Manager::PositionSystem()
         
         auto& positionCom = e->getComponent<PositionComponent>();
         
-        // Calculations blah blah blah
+        // Calculations
         positionCom.destX += positionCom.deltaX * 2;
         positionCom.destY += positionCom.deltaY * 2;
     }
@@ -46,11 +46,13 @@ void Manager::DrawSystem()
         SDL_Texture* objTexture = TextureManager::loadTexture(spriteCom.sourceFile);
         SDL_Rect srcRect, destRect;
         
-        srcRect.h = srcRect.w = 32;
+        srcRect.h = SpriteComponent::SPRITE_HEIGHT;
+        srcRect.w = SpriteComponent::SPRITE_WIDTH;
         srcRect.x = spriteCom.srcX;
         srcRect.y = spriteCom.srcY;
         
-        destRect.h = destRect.w = 64;
+        destRect.h = SpriteComponent::INGAME_HEIGHT;
+        destRect.w = SpriteComponent::INGAME_WIDTH;
         destRect.x = positionCom.destX;
         destRect.y = positionCom.destY;
         
@@ -73,7 +75,7 @@ void Manager::AnimationSystem()
         // If entity is standing still, use the middle sprite
         if (positionCom.deltaX == 0 && positionCom.deltaY == 0)
         {
-            spriteCom.srcX = 32;
+            spriteCom.srcX = SpriteComponent::SPRITE_WIDTH * 1;
             animationCom.deltaFrame = 1;
             animationCom.frameCount = 0;
         }
@@ -97,10 +99,10 @@ void Manager::AnimationSystem()
         }
         
         // Animation frame calculation
-        if (animationCom.frameCount == 10)
+        if (animationCom.frameCount == 9)
         {
-            spriteCom.srcX += (32 * animationCom.deltaFrame);
-            if (spriteCom.srcX == 64)
+            spriteCom.srcX += (SpriteComponent::SPRITE_WIDTH * animationCom.deltaFrame);
+            if (spriteCom.srcX == (SpriteComponent::SPRITE_WIDTH * 2))
             {
                 animationCom.deltaFrame = -1;
             }

@@ -28,6 +28,9 @@ public:
     bool running() { return isRunning; }
     
     static SDL_Renderer *renderer;
+    static int GAME_WIDTH;
+    static int GAME_HEIGHT;
+    static int TILE_SIZE;
     
 private:
     int count = 0;
