@@ -16,8 +16,7 @@
 #include <sstream>
 
 TileMap::TileMap(const char* filename)
-    : mapSource(filename), gameTileWidth(Game::GAME_WIDTH / Game::TILE_SIZE),
-    gameTileHeight(Game::GAME_HEIGHT / Game::TILE_SIZE)
+    : mapSource(filename)
 {}
 
 std::vector<std::shared_ptr<TileSet>> tilesetVector;
@@ -84,7 +83,6 @@ void TileMap::drawMap()
         const char* layerData = dataNode->value();
         
         std::stringstream fileStream(layerData);
-        
         std::string substr;
         
         int count = 0;
@@ -94,10 +92,11 @@ void TileMap::drawMap()
             std::getline(fileStream, substr, ',');
             count++;
             
-            // Remove any special characters
+            // Remove any special characters before converting to an int
             substr.erase(std::remove(substr.begin(), substr.end(), '\r'));
             substr.erase(std::remove(substr.begin(), substr.end(), '\n'));
             
+            // Ignore transparent tiles
             int tileID = std::stoi(substr);
             if (tileID == 0) continue;
             
@@ -111,38 +110,35 @@ void TileMap::drawMap()
             
             auto& sourceTileset = tilesetVector[tilesetIndex];
             
-            // Calculate source rect
-            tileID = (tileID - sourceTileset->firstID) + 1;
-            int numColumns = sourceTileset->width / Game::TILE_SIZE;
-            
-            int row = 0;
-            while (tileID > numColumns)
-            {
-                row++;
-                tileID -= numColumns;
-            }
-            
             SDL_Rect srcRect, destRect;
             
-            srcRect.x = Game::TILE_SIZE * (tileID - 1);
-            srcRect.y = Game::TILE_SIZE * row;
-            srcRect.w = srcRect.h = Game::TILE_SIZE;
+            // Make tileID relative to the source tileset
+            tileID = (tileID - sourceTileset->firstID) + 1;
             
-            // Calculate destRec
-            // TODO: Make a helper function to automate this tile location calculation
-            int temp = count;
-            row = 0;
-            while (temp > gameTileWidth)
-            {
-                row++;
-                temp -= gameTileWidth;
-            }
-            
-            destRect.x = Game::TILE_SIZE * (temp - 1);
-            destRect.y = Game::TILE_SIZE * row;
-            destRect.w = destRect.h = Game::TILE_SIZE;
+            srcRect = getTilePosition(tileID, sourceTileset->width);
+            destRect = getTilePosition(count, Game::GAME_WIDTH);
             
             TextureManager::drawTexture(sourceTileset->texture, srcRect, destRect);
         }
     }
+}
+
+SDL_Rect TileMap::getTilePosition(int tileID, int gridWidth)
+{
+    SDL_Rect rect;
+    
+    int numColumns = gridWidth / Game::TILE_SIZE;
+    
+    int row = 0;
+    while (tileID > numColumns)
+    {
+        row++;
+        tileID -= numColumns;
+    }
+    
+    rect.x = Game::TILE_SIZE * (tileID - 1);
+    rect.y = Game::TILE_SIZE * row;
+    rect.w = rect.h = Game::TILE_SIZE;
+    
+    return rect;
 }

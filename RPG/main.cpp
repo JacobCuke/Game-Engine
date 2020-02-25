@@ -10,12 +10,6 @@
 
 Game *game = nullptr;
 
-struct TileSet
-{
-    int firstID;
-    SDL_Texture* texture;
-};
-
 int main(int argc, char *argv[])
 {
     const int FPS = 60;

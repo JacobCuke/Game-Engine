@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include "XMLParser/rapidxml.hpp"
 
 struct TileSet
 {
@@ -24,12 +23,11 @@ class TileMap
 {
 private:
     const char* mapSource;
-    int gameTileWidth;
-    int gameTileHeight;
     
 public:
     TileMap(const char* filename);
     
     void init();
     void drawMap();
+    SDL_Rect getTilePosition(int tileID, int gridWidth);
 };

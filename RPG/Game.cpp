@@ -28,7 +28,6 @@ TileMap *tilemap;
 
 Manager manager;
 Entity& player(manager.addEntity());
-Entity& queen(manager.addEntity());
 
 Game::Game()
 {
@@ -79,10 +78,6 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     player.addComponent<SpriteComponent>("assets/player.png");
     player.addComponent<AnimationComponent>();
     player.addComponent<ControlComponent>(true);
-    
-//    queen.addComponent<PositionComponent>(384, 0, 0, 0);
-//    queen.addComponent<SpriteComponent>("assets/queen.png");
-//    queen.addComponent<AnimationComponent>();
 }
 
 void Game::handleEvents()
