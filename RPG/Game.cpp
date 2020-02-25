@@ -10,18 +10,23 @@
 #include <set>
 
 #include "Game.hpp"
-#include "TextureManager.hpp"
 #include "Map.hpp"
 #include "ECS.hpp"
 #include "Manager.hpp"
 #include "Components.hpp"
+#include "TileMap.hpp"
 
 
 SDL_Renderer *Game::renderer = nullptr;
+int Game::GAME_WIDTH = 800;
+int Game::GAME_HEIGHT = 640;
+int Game::TILE_SIZE = 32;
+
 SDL_Keycode keyPressed;
 std::set<int> currentKeysPressed;
 
 Map *gameMap;
+TileMap *tilemap;
 
 Manager manager;
 Entity& player(manager.addEntity());
@@ -70,15 +75,17 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     }
     
     gameMap = new Map();
+    tilemap = new TileMap("tilemaps/testlevel.tmx");
+    tilemap->init();
     
     player.addComponent<PositionComponent>(320, 0, 0, 0);
-    player.addComponent<SpriteComponent>("assets/hero.png");
+    player.addComponent<SpriteComponent>("assets/player.png");
     player.addComponent<AnimationComponent>();
     player.addComponent<ControlComponent>(true);
     
-    queen.addComponent<PositionComponent>(384, 0, 0, 0);
-    queen.addComponent<SpriteComponent>("assets/queen.png");
-    queen.addComponent<AnimationComponent>();
+//    queen.addComponent<PositionComponent>(384, 0, 0, 0);
+//    queen.addComponent<SpriteComponent>("assets/queen.png");
+//    queen.addComponent<AnimationComponent>();
 }
 
 void Game::handleEvents()
@@ -120,7 +127,8 @@ void Game::render()
     SDL_RenderClear(renderer);
     
     // Add objects to be rendered
-    gameMap->drawMap();
+//    gameMap->drawMap();
+    tilemap->drawMap();
     manager.DrawSystem();
     
     SDL_RenderPresent(renderer);

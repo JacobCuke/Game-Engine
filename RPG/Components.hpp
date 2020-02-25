@@ -38,10 +38,16 @@ struct SpriteComponent : public Component
     int srcX;
     int srcY;
     
-    static const int LEFT_SPRITE = 32;
-    static const int RIGHT_SPRITE = 64;
-    static const int UP_SPRITE = 96;
+    static const int SPRITE_WIDTH = 32;
+    static const int SPRITE_HEIGHT = 48;
+    
+    static const int LEFT_SPRITE = 48;
+    static const int RIGHT_SPRITE = 96;
+    static const int UP_SPRITE = 144;
     static const int DOWN_SPRITE = 0;
+    
+    static const int INGAME_WIDTH = 32;
+    static const int INGAME_HEIGHT = 64;
     
     SpriteComponent(const char* filename)
         : sourceFile(filename), srcX(0), srcY(0)

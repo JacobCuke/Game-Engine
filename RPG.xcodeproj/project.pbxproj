@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4360696A24011A02004C9D48 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4360696824011A02004C9D48 /* Vector2D.cpp */; };
+		43B6DA28240407D600369A67 /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B6DA26240407D600369A67 /* TileMap.cpp */; };
 		43B98CF723F6CC2C0051C5DA /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF323F6CC2C0051C5DA /* Game.cpp */; };
 		43B98CF823F6CC2C0051C5DA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF423F6CC2C0051C5DA /* main.cpp */; };
 		43B98CFB23F7ABC40051C5DA /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF923F7ABC40051C5DA /* TextureManager.cpp */; };
@@ -33,6 +34,12 @@
 /* Begin PBXFileReference section */
 		4360696824011A02004C9D48 /* Vector2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2D.cpp; sourceTree = "<group>"; };
 		4360696924011A02004C9D48 /* Vector2D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector2D.hpp; sourceTree = "<group>"; };
+		43925C3F240399BF00F4365F /* tilemaps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tilemaps; sourceTree = "<group>"; };
+		43925C4024039A8500F4365F /* tilesets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tilesets; sourceTree = "<group>"; };
+		43925C4124039A8500F4365F /* tilesheets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tilesheets; sourceTree = "<group>"; };
+		43925C422403EAC700F4365F /* XMLParser */ = {isa = PBXFileReference; lastKnownFileType = folder; path = XMLParser; sourceTree = "<group>"; };
+		43B6DA26240407D600369A67 /* TileMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
+		43B6DA27240407D600369A67 /* TileMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TileMap.hpp; sourceTree = "<group>"; };
 		43B98CF323F6CC2C0051C5DA /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		43B98CF423F6CC2C0051C5DA /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		43B98CF523F6CC2C0051C5DA /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -84,6 +91,10 @@
 		43D3685323F69E6700EC13A7 /* RPG */ = {
 			isa = PBXGroup;
 			children = (
+				43925C422403EAC700F4365F /* XMLParser */,
+				43925C3F240399BF00F4365F /* tilemaps */,
+				43925C4024039A8500F4365F /* tilesets */,
+				43925C4124039A8500F4365F /* tilesheets */,
 				43B98CF523F6CC2C0051C5DA /* assets */,
 				43B98CF323F6CC2C0051C5DA /* Game.cpp */,
 				43B98CF623F6CC2C0051C5DA /* Game.hpp */,
@@ -99,6 +110,8 @@
 				43EFC1BD23FD80C3005046A5 /* Manager.hpp */,
 				4360696824011A02004C9D48 /* Vector2D.cpp */,
 				4360696924011A02004C9D48 /* Vector2D.hpp */,
+				43B6DA26240407D600369A67 /* TileMap.cpp */,
+				43B6DA27240407D600369A67 /* TileMap.hpp */,
 			);
 			path = RPG;
 			sourceTree = "<group>";
@@ -169,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43B6DA28240407D600369A67 /* TileMap.cpp in Sources */,
 				4360696A24011A02004C9D48 /* Vector2D.cpp in Sources */,
 				43EFC1BE23FD80C3005046A5 /* Manager.cpp in Sources */,
 				43B98D0123F7C6840051C5DA /* Map.cpp in Sources */,
