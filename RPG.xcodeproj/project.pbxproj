@@ -12,7 +12,6 @@
 		43B98CF723F6CC2C0051C5DA /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF323F6CC2C0051C5DA /* Game.cpp */; };
 		43B98CF823F6CC2C0051C5DA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF423F6CC2C0051C5DA /* main.cpp */; };
 		43B98CFB23F7ABC40051C5DA /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CF923F7ABC40051C5DA /* TextureManager.cpp */; };
-		43B98D0123F7C6840051C5DA /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B98CFF23F7C6840051C5DA /* Map.cpp */; };
 		43D3685D23F6A12B00EC13A7 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D3685C23F6A12B00EC13A7 /* libSDL2-2.0.0.dylib */; };
 		43D3686223F6B79900EC13A7 /* libSDL2_image-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D3686123F6B79900EC13A7 /* libSDL2_image-2.0.0.dylib */; };
 		43EFC1BB23FD807D005046A5 /* ECS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43EFC1BA23FD807D005046A5 /* ECS.cpp */; };
@@ -46,8 +45,6 @@
 		43B98CF623F6CC2C0051C5DA /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		43B98CF923F7ABC40051C5DA /* TextureManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureManager.cpp; sourceTree = "<group>"; };
 		43B98CFA23F7ABC40051C5DA /* TextureManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureManager.hpp; sourceTree = "<group>"; };
-		43B98CFF23F7C6840051C5DA /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
-		43B98D0023F7C6840051C5DA /* Map.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
 		43B98D0323F810ED0051C5DA /* ECS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ECS.hpp; sourceTree = "<group>"; };
 		43B98D0723FBFA9F0051C5DA /* Components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Components.hpp; sourceTree = "<group>"; };
 		43D3685123F69E6700EC13A7 /* RPG */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RPG; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,8 +98,6 @@
 				43B98CF423F6CC2C0051C5DA /* main.cpp */,
 				43B98CF923F7ABC40051C5DA /* TextureManager.cpp */,
 				43B98CFA23F7ABC40051C5DA /* TextureManager.hpp */,
-				43B98CFF23F7C6840051C5DA /* Map.cpp */,
-				43B98D0023F7C6840051C5DA /* Map.hpp */,
 				43EFC1BA23FD807D005046A5 /* ECS.cpp */,
 				43B98D0323F810ED0051C5DA /* ECS.hpp */,
 				43B98D0723FBFA9F0051C5DA /* Components.hpp */,
@@ -185,7 +180,6 @@
 				43B6DA28240407D600369A67 /* TileMap.cpp in Sources */,
 				4360696A24011A02004C9D48 /* Vector2D.cpp in Sources */,
 				43EFC1BE23FD80C3005046A5 /* Manager.cpp in Sources */,
-				43B98D0123F7C6840051C5DA /* Map.cpp in Sources */,
 				43B98CF823F6CC2C0051C5DA /* main.cpp in Sources */,
 				43B98CF723F6CC2C0051C5DA /* Game.cpp in Sources */,
 				43B98CFB23F7ABC40051C5DA /* TextureManager.cpp in Sources */,

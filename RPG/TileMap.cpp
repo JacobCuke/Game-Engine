@@ -52,11 +52,11 @@ void TileMap::init()
         tileset->width = std::atoi(imageNode->first_attribute("width")->value());
         
         // Image source
-        std::string imageSourceFilename = imageNode->first_attribute("source")->value();
-        tileset->imageSource = imageSourceFilename.erase(0, 3);
+        std::string imageSource = imageNode->first_attribute("source")->value();
+        imageSource.erase(0, 3);
         
         // Texture
-        tileset->texture = TextureManager::loadTexture(tileset->imageSource.c_str());
+        tileset->texture = TextureManager::loadTexture(imageSource.c_str());
         
         // TODO: Collidable objects
         

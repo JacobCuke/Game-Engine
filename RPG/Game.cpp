@@ -10,7 +10,6 @@
 #include <set>
 
 #include "Game.hpp"
-#include "Map.hpp"
 #include "ECS.hpp"
 #include "Manager.hpp"
 #include "Components.hpp"
@@ -25,7 +24,6 @@ int Game::TILE_SIZE = 32;
 SDL_Keycode keyPressed;
 std::set<int> currentKeysPressed;
 
-Map *gameMap;
 TileMap *tilemap;
 
 Manager manager;
@@ -74,7 +72,6 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
         isRunning = false;
     }
     
-    gameMap = new Map();
     tilemap = new TileMap("tilemaps/testlevel.tmx");
     tilemap->init();
     
@@ -127,7 +124,6 @@ void Game::render()
     SDL_RenderClear(renderer);
     
     // Add objects to be rendered
-//    gameMap->drawMap();
     tilemap->drawMap();
     manager.DrawSystem();
     

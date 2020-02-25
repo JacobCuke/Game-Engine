@@ -10,7 +10,6 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include <string>
 #include "XMLParser/rapidxml.hpp"
 
 struct TileSet
@@ -19,7 +18,6 @@ struct TileSet
     SDL_Texture* texture;
     int height;
     int width;
-    std::string imageSource;
 };
 
 class TileMap
