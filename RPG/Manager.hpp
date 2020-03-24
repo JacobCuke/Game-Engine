@@ -13,11 +13,13 @@
 #include <memory>
 
 #include "ECS.hpp"
+#include "Components.hpp"
 
 class Manager
 {
 private:
     std::vector<std::unique_ptr<Entity>> entities;
+    bool CollisionSystem(PositionComponent& entity);
     
 public:
     Entity& addEntity();
@@ -25,6 +27,5 @@ public:
     void DrawSystem();
     void AnimationSystem();
     void ControlSystem(int& keyPressed);
-    void CollisionSystem();
 };
 

@@ -111,7 +111,7 @@ void Game::update()
 {
     manager.ControlSystem(keyPressed);
     manager.PositionSystem();
-    manager.CollisionSystem();
+//    manager.CollisionSystem();
     manager.AnimationSystem();
 }
 

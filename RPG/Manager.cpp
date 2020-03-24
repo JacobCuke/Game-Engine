@@ -28,8 +28,20 @@ void Manager::PositionSystem()
         auto& positionCom = e->getComponent<PositionComponent>();
         
         // Calculations
+        // Store original values
+        int originalX = positionCom.destX;
+        int originalY = positionCom.destY;
+        
+        // Attempt to move
         positionCom.destX += positionCom.deltaX * 2;
         positionCom.destY += positionCom.deltaY * 2;
+        
+        // If there's a collision the move fails
+        if (CollisionSystem(positionCom))
+        {
+            positionCom.destX = originalX;
+            positionCom.destY = originalY;
+        }
     }
 }
 
@@ -161,26 +173,21 @@ void Manager::ControlSystem(int& keyPressed)
     }
 }
 
-void Manager::CollisionSystem()
+bool Manager::CollisionSystem(PositionComponent& positionCom)
 {
-    for (auto &e : entities)
+    // Check that player is not out of bounds
+    if (positionCom.destX < 0) return true;
+    if (positionCom.destY < 0) return true;
+    
+    if (positionCom.destX > Game::GAME_WIDTH - SpriteComponent::INGAME_WIDTH)
     {
-        if (!e->hasComponent<PositionComponent>()) continue;
-        
-        auto& positionCom = e->getComponent<PositionComponent>();
-        
-        // Check that player is not out of bounds
-        if (positionCom.destX < 0) positionCom.destX = 0;
-        if (positionCom.destY < 0) positionCom.destY = 0;
-        
-        if (positionCom.destX > Game::GAME_WIDTH - SpriteComponent::INGAME_WIDTH)
-        {
-            positionCom.destX = Game::GAME_WIDTH - SpriteComponent::INGAME_WIDTH;
-        }
-        
-        if (positionCom.destY > Game::GAME_HEIGHT - SpriteComponent::INGAME_HEIGHT)
-        {
-            positionCom.destY = Game::GAME_HEIGHT - SpriteComponent::INGAME_HEIGHT;
-        }
+        return true;
     }
+    
+    if (positionCom.destY > Game::GAME_HEIGHT - SpriteComponent::INGAME_HEIGHT)
+    {
+        return true;
+    }
+    
+    return false;
 }
