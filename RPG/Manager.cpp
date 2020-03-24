@@ -160,3 +160,27 @@ void Manager::ControlSystem(int& keyPressed)
         }
     }
 }
+
+void Manager::CollisionSystem()
+{
+    for (auto &e : entities)
+    {
+        if (!e->hasComponent<PositionComponent>()) continue;
+        
+        auto& positionCom = e->getComponent<PositionComponent>();
+        
+        // Check that player is not out of bounds
+        if (positionCom.destX < 0) positionCom.destX = 0;
+        if (positionCom.destY < 0) positionCom.destY = 0;
+        
+        if (positionCom.destX > Game::GAME_WIDTH - SpriteComponent::INGAME_WIDTH)
+        {
+            positionCom.destX = Game::GAME_WIDTH - SpriteComponent::INGAME_WIDTH;
+        }
+        
+        if (positionCom.destY > Game::GAME_HEIGHT - SpriteComponent::INGAME_HEIGHT)
+        {
+            positionCom.destY = Game::GAME_HEIGHT - SpriteComponent::INGAME_HEIGHT;
+        }
+    }
+}

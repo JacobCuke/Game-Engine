@@ -25,5 +25,6 @@ public:
     void DrawSystem();
     void AnimationSystem();
     void ControlSystem(int& keyPressed);
+    void CollisionSystem();
 };
 
