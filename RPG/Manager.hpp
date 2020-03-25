@@ -13,15 +13,20 @@
 #include <memory>
 
 #include "ECS.hpp"
+#include "Components.hpp"
+#include "TileMap.hpp"
 
 class Manager
 {
 private:
     std::vector<std::unique_ptr<Entity>> entities;
+    bool CollisionSystem(PositionComponent& positionCom, TileMap* tilemap);
+    int getPositionFromCoords(int x, int y);
+    bool hasCollidableAtPosition(int position, std::vector<int> collidableTiles);
     
 public:
     Entity& addEntity();
-    void PositionSystem();
+    void PositionSystem(TileMap* tilemap);
     void DrawSystem();
     void AnimationSystem();
     void ControlSystem(int& keyPressed);

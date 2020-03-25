@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <vector>
 
 struct TileSet
 {
@@ -25,9 +26,13 @@ private:
     const char* mapSource;
     
 public:
+    std::vector<int> collidableTiles;
+    
     TileMap(const char* filename);
     
     void init();
     void drawMap();
     SDL_Rect getTilePosition(int tileID, int gridWidth);
+    
+    static std::vector<int> getTilesAtPosition(const char* filename, int position);
 };

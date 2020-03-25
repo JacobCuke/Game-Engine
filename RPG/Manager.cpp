@@ -9,6 +9,7 @@
 #include "Manager.hpp"
 #include "Components.hpp"
 #include "TextureManager.hpp"
+#include "TileMap.hpp"
 
 Entity& Manager::addEntity()
 {
@@ -19,7 +20,7 @@ Entity& Manager::addEntity()
     return *e;
 }
 
-void Manager::PositionSystem()
+void Manager::PositionSystem(TileMap* tilemap)
 {
     for (auto& e : entities)
     {
@@ -28,8 +29,20 @@ void Manager::PositionSystem()
         auto& positionCom = e->getComponent<PositionComponent>();
         
         // Calculations
+        // Store original values
+        int originalX = positionCom.destX;
+        int originalY = positionCom.destY;
+        
+        // Attempt to move
         positionCom.destX += positionCom.deltaX * 2;
         positionCom.destY += positionCom.deltaY * 2;
+        
+        // If there's a collision the move fails
+        if (CollisionSystem(positionCom, tilemap))
+        {
+            positionCom.destX = originalX;
+            positionCom.destY = originalY;
+        }
     }
 }
 
@@ -159,4 +172,66 @@ void Manager::ControlSystem(int& keyPressed)
                 break;
         }
     }
+}
+
+bool Manager::CollisionSystem(PositionComponent& positionCom, TileMap* tilemap)
+{
+    // Check that player is not out of bounds
+    if (positionCom.destX < 0) return true;
+    if (positionCom.destY < 0) return true;
+    
+    if (positionCom.destX > Game::GAME_WIDTH - SpriteComponent::INGAME_WIDTH)
+    {
+        return true;
+    }
+    
+    if (positionCom.destY > Game::GAME_HEIGHT - SpriteComponent::INGAME_HEIGHT)
+    {
+        return true;
+    }
+    
+    // TODO: Figure out what tiles the player's bottom half are touching
+    int xCoord = positionCom.destX;
+    int yCoord = positionCom.destY + (SpriteComponent::INGAME_HEIGHT / 2);
+    
+    int position;
+    // Top left corner
+    position = getPositionFromCoords(xCoord, yCoord);
+    if (hasCollidableAtPosition(position, tilemap->collidableTiles)) return true;
+    
+    // Top right corner
+    position = getPositionFromCoords(xCoord + (SpriteComponent::INGAME_WIDTH - 1), yCoord);
+    if (hasCollidableAtPosition(position, tilemap->collidableTiles)) return true;
+    
+    // Bottom left corner
+    position = getPositionFromCoords(xCoord, yCoord + (SpriteComponent::INGAME_WIDTH - 1));
+    if (hasCollidableAtPosition(position, tilemap->collidableTiles)) return true;
+    
+    // Bottom right corner
+    position = getPositionFromCoords(xCoord + (SpriteComponent::INGAME_WIDTH - 1), yCoord + (SpriteComponent::INGAME_WIDTH - 1));
+    if (hasCollidableAtPosition(position, tilemap->collidableTiles)) return true;
+    
+    return false;
+}
+
+int Manager::getPositionFromCoords(int x, int y)
+{
+    int positionX = x / Game::TILE_SIZE;
+    int positionY = y / Game::TILE_SIZE;
+    
+//    std::cout << "X: " << positionX << " Y: " << positionY << '\n';
+    
+    return (positionX + 1) + (positionY * (Game::GAME_WIDTH/Game::TILE_SIZE));
+}
+
+bool Manager::hasCollidableAtPosition(int position, std::vector<int> collidableTiles)
+{
+    std::vector<int> tiles = TileMap::getTilesAtPosition("tilemaps/testlevel.tmx", position);
+    
+    for (auto i = tiles.begin(); i != tiles.end(); ++i)
+    {
+        if (std::find(collidableTiles.begin(), collidableTiles.end(), *i) != collidableTiles.end()) return true;
+    }
+    
+    return false;
 }
