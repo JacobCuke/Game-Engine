@@ -57,7 +57,12 @@ void TileMap::init()
         // Texture
         tileset->texture = TextureManager::loadTexture(imageSource.c_str());
         
-        // TODO: Collidable objects
+        // Collidable objects
+        for (rapidxml::xml_node<> *tileNode = tilesetRoot->first_node("tile"); tileNode; tileNode =
+             tileNode->next_sibling("tile"))
+        {
+            collidableTiles.push_back(std::atoi(tileNode->first_attribute("id")->value()) + tileset->firstID);
+        }
         
         tilesetVector.emplace_back(tileset);
     }
@@ -141,4 +146,49 @@ SDL_Rect TileMap::getTilePosition(int tileID, int gridWidth)
     rect.w = rect.h = Game::TILE_SIZE;
     
     return rect;
+}
+
+std::vector<int> TileMap::getTilesAtPosition(const char *filename, int position)
+{
+    // Open map file
+    rapidxml::file<> mapFile(filename);
+    rapidxml::xml_document<> doc;
+    doc.parse<0>(mapFile.data());
+    rapidxml::xml_node<> *rootNode = doc.first_node("map");
+
+    std::vector<int> tiles;
+    int topTile = 0;
+    
+    // For each layer
+    for (rapidxml::xml_node<> *layerNode = rootNode->first_node("layer"); layerNode; layerNode = layerNode->next_sibling("layer"))
+    {
+        // Read data
+        rapidxml::xml_node<> *dataNode = layerNode->first_node("data");
+        const char* layerData = dataNode->value();
+        
+        std::stringstream fileStream(layerData);
+        std::string substr;
+        
+        int count = 0;
+        // For each tile
+        while (fileStream.good())
+        {
+            std::getline(fileStream, substr, ',');
+            count++;
+            
+            if (count != position) continue;
+            
+            // Remove any special characters before converting to an int
+            substr.erase(std::remove(substr.begin(), substr.end(), '\r'));
+            substr.erase(std::remove(substr.begin(), substr.end(), '\n'));
+            
+            int tile = std::stoi(substr);
+            if (tile != 0) topTile = tile;
+            break;
+        }
+    }
+    
+    tiles.push_back(topTile);
+    
+    return tiles;
 }

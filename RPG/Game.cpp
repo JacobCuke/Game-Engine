@@ -74,7 +74,7 @@ void Game::init(const char *title, int xpos, int ypos, int width, int height, bo
     tilemap = new TileMap("tilemaps/testlevel.tmx");
     tilemap->init();
     
-    player.addComponent<PositionComponent>(320, 0, 0, 0);
+    player.addComponent<PositionComponent>(288, 0, 0, 0);
     player.addComponent<SpriteComponent>("assets/player.png");
     player.addComponent<AnimationComponent>();
     player.addComponent<ControlComponent>(true);
@@ -110,8 +110,7 @@ void Game::handleEvents()
 void Game::update()
 {
     manager.ControlSystem(keyPressed);
-    manager.PositionSystem();
-//    manager.CollisionSystem();
+    manager.PositionSystem(tilemap);
     manager.AnimationSystem();
 }
 
